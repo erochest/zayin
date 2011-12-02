@@ -16,10 +16,10 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "zayin"
   gem.homepage = "http://github.com/erochest/zayin"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "err8n@virginia.edu"
+  gem.license = "Apache2"
+  gem.summary = %Q{A collection of Ruby utilities and Rake tasks.}
+  gem.description = %Q{A collection of Ruby utilities and Rake tasks.}
+  gem.email = "erochest@gmail.com"
   gem.authors = ["Eric Rochester"]
   # dependencies defined in Gemfile
 end
