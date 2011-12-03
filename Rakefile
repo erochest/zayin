@@ -42,3 +42,14 @@ end
 
 task :default => :test
 
+desc 'This uploads the gem to rubygems.org.'
+task :cut do
+  build_out   = `gem build zayin.gemspec`
+
+  build_lines = build_out.lines.map { |line| line.rstrip }
+  build_file  = build_lines.select { |line| line.lstrip.start_with?('File: ') }.first
+  gem_file    = build_file[6..-1]
+
+  sh %{gem push #{gem_file}}
+end
+
