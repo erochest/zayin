@@ -4,7 +4,7 @@ require 'rake/tasklib'
 
 module Zayin
   module Rake
-    # Defines a set of Rake tasks for 
+    # Defines a set of Rake tasks for working with Haskell/Cabal projects.
     class HaskellTasks < ::Rake::TaskLib
       def initialize
         yield self if block_given?
