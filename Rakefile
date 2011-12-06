@@ -21,6 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{A collection of Ruby utilities and Rake tasks.}
   gem.email = "erochest@gmail.com"
   gem.authors = ["Eric Rochester"]
+  gem.files = FileList['lib/**/*rb']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -42,14 +43,21 @@ end
 
 task :default => :test
 
-desc 'This uploads the gem to rubygems.org.'
-task :cut do
-  build_out   = `gem build zayin.gemspec`
+namespace :gem do
+  desc 'This uploads the gem to rubygems.org.'
+  task :cut do
+    sh %{gem build zayin.gemspec}
+  end
 
-  build_lines = build_out.lines.map { |line| line.rstrip }
-  build_file  = build_lines.select { |line| line.lstrip.start_with?('File: ') }.first
-  gem_file    = build_file[6..-1]
+  desc 'This uploads the gem to rubygems.org.'
+  task :push do
+    build_out   = `gem build zayin.gemspec`
 
-  sh %{gem push #{gem_file}}
+    build_lines = build_out.lines.map { |line| line.rstrip }
+    build_file  = build_lines.select { |line| line.lstrip.start_with?('File: ') }.first
+    gem_file    = build_file[6..-1]
+
+    sh %{gem push #{gem_file}}
+  end
 end
 

@@ -9,12 +9,17 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Rochester"]
-  s.date = "2011-12-03"
+  s.date = "2011-12-06"
   s.description = "A collection of Ruby utilities and Rake tasks."
   s.email = "erochest@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
+  ]
+  s.files = [
+    "lib/zayin.rb",
+    "lib/zayin/rake/haskell.rb",
+    "lib/zayin/rake/vagrant.rb"
   ]
   s.homepage = "http://github.com/erochest/zayin"
   s.licenses = ["Apache2"]
