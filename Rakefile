@@ -55,7 +55,7 @@ namespace :gem do
 
     build_lines = build_out.lines.map { |line| line.rstrip }
     build_file  = build_lines.select { |line| line.lstrip.start_with?('File: ') }.first
-    gem_file    = build_file[6..-1]
+    gem_file    = build_file[7..-1].strip
 
     sh %{gem push #{gem_file}}
   end
