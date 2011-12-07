@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "zayin"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Rochester"]
-  s.date = "2011-12-06"
+  s.date = "2011-12-07"
   s.description = "A collection of Ruby utilities and Rake tasks."
   s.email = "erochest@gmail.com"
   s.extra_rdoc_files = [
@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
     "lib/zayin.rb",
     "lib/zayin/rake/docco.rb",
     "lib/zayin/rake/haskell.rb",
-    "lib/zayin/rake/vagrant.rb"
+    "lib/zayin/rake/php.rb",
+    "lib/zayin/rake/vagrant.rb",
+    "lib/zayin/rake/vagrant/php.rb"
   ]
   s.homepage = "http://github.com/erochest/zayin"
   s.licenses = ["Apache2"]
