@@ -17,7 +17,7 @@ module Zayin
           puts ">>> #{cmd}"
           @env.primary_vm.ssh.execute do |ssh|
             unless output_dir.nil?
-              ssh.exec("if [ ! -d #{output_dir} ]; then mkdir -p #{output_dir}; fi")
+              ssh.exec!("if [ ! -d #{output_dir} ]; then mkdir -p #{output_dir}; fi")
             end
             ssh.exec!(cmd) do |channel, stream, data|
               print data
