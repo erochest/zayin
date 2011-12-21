@@ -96,7 +96,7 @@ Generate a PHP Copy/Paste Detection report.
   base_dir    The directory to analyze.
   output_dir  The output directory.
               EOS
-            task :cpd, [:base_dir, :output_dir] do
+            task :cpd, [:base_dir, :output_dir] do |t, args|
               base_dir   = args[:base_dir]   || Dir.pwd
               output_dir = args[:output_dir] || File.join(Dir.pwd, 'phpcpd')
 
@@ -110,7 +110,7 @@ Generate a PHP_CodeSniffer report for coding standards.
   output_dir  The output directory.
   standard    The standard to check against (default is Zend).
               EOS
-            task :cs, [:base_dir, :output_dir, :standard] do
+            task :cs, [:base_dir, :output_dir, :standard] do |t, args|
               base_dir   = args[:base_dir]   || Dir.pwd
               output_dir = args[:output_dir] || File.join(Dir.pwd, 'phpcs')
               standard   = args[:standard]   || 'Zend'
