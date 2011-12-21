@@ -109,18 +109,21 @@ Generate a PHP_CodeSniffer report for coding standards.
   base_dir    The directory to analyze.
   output_dir  The output directory.
   standard    The standard to check against (default is Zend).
+  args        Other arguments (default is none).
               EOS
-            task :cs, [:base_dir, :output_dir, :standard] do |t, args|
+            task :cs, [:base_dir, :output_dir, :standard, :args] do |t, args|
               base_dir   = args[:base_dir]   || Dir.pwd
               output_dir = args[:output_dir] || File.join(Dir.pwd, 'phpcs')
               standard   = args[:standard]   || 'Zend'
+              more_args  = args[:args]       || ''
 
               cmd = "phpcs --report=checkstyle " +
                 "--extensions=php " +
                 "--ignore=*/tests/* " +
                 "--report-file=#{output_dir}/checkstyle.xml " +
               "--standard=#{standard} " +
-              "#{base_dir}"
+              more_args +
+              " #{base_dir}"
               sh_cmd(cmd, output_dir)
             end
           end
