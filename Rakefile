@@ -44,7 +44,7 @@ end
 task :default => :test
 
 namespace :gem do
-  desc 'This uploads the gem to rubygems.org.'
+  desc 'This builds the gem.'
   task :cut do
     sh %{gem build zayin.gemspec}
   end
