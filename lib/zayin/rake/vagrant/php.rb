@@ -104,7 +104,7 @@ module Zayin
     base_dir    The directory to analyze.
     output_dir  The output directory.
                 EOS
-              task :cpd, [:base_dir, :output_dir] do
+              task :cpd, [:base_dir, :output_dir] do |t, args|
                 base_dir   = args[:base_dir]   || '/vagrant'
                 output_dir = args[:output_dir] || '/vagrant/phpcpd'
 
@@ -117,18 +117,21 @@ module Zayin
     base_dir    The directory to analyze.
     output_dir  The output directory.
     standard    The standard to check against (default is Zend).
+    args        Other arguments (default is none).
                 EOS
-              task :cs, [:base_dir, :output_dir, :standard] do
+              task :cs, [:base_dir, :output_dir, :standard, :args] do |t, args|
                 base_dir   = args[:base_dir]   || '/vagrant'
                 output_dir = args[:output_dir] || '/vagrant/phpcs'
                 standard   = args[:standard]   || 'Zend'
+                more_args  = args[:args]       || ''
 
                 cmd = "phpcs --report=checkstyle " +
                   "--extensions=php " +
                   "--ignore=*/tests/* " +
                   "--report-file=#{output_dir}/checkstyle.xml " +
-                "--standard=#{standard} " +
-                "#{base_dir}"
+                  "--standard=#{standard} " +
+                  more_args +
+                  " #{base_dir}"
                 vm_ssh(cmd, output_dir)
               end
             end
