@@ -73,12 +73,17 @@ module Zayin
   Run PHP Mess Detector in a directory.
     base_dir    The directory to run phpmd from.
     output_dir  The output directory.
+    ruleset     An optional ruleset to also test against. This is added to
+                the defaults of 'codesize,design,naming,unusedcode'.
                 EOS
-              task :md, [:base_dir, :output_dir] do |t, args|
+              task :md, [:base_dir, :output_dir, :ruleset] do |t, args|
                 base_dir   = args[:base_dir]   || '/vagrant'
                 output_dir = args[:output_dir] || '/vagrant/phpmd'
+                ruleset    = args[:ruleset]    || ''
 
-                cmd = "phpmd #{base_dir} html codesize,design,naming,unusedcode " +
+                ruleset = ',' + ruleset unless ruleset.empty?
+
+                cmd = "phpmd #{base_dir} html codesize,design,naming,unusedcode#{ruleset} " +
                   "--reportfile #{output_dir}/index.html"
                 vm_ssh(cmd, output_dir)
               end
