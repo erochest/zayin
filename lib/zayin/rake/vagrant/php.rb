@@ -15,14 +15,19 @@ module Zayin
 
         def vm_ssh(cmd, output_dir)
           puts ">>> #{cmd}"
-          @env.primary_vm.ssh.execute do |ssh|
-            unless output_dir.nil?
-              ssh.exec!("if [ ! -d #{output_dir} ]; then mkdir -p #{output_dir}; fi")
+          unless output_dir.nil?
+            @env.primary_vm.channel.execute(
+              "if [ ! -d #{output_dir} ]; then mkdir -p #{output_dir}; fi"
+            )
+          end
+          @env.primary_vm.channel.execute cmd do |channel, data|
+            out = $stdout
+            if channel == :stderr
+              out = $stderr
             end
-            ssh.exec!(cmd) do |channel, stream, data|
-              print data
-              $stdout.flush
-            end
+
+            out.write(data)
+            out.flush()
           end
         end
 
