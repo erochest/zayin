@@ -9,7 +9,7 @@ module Zayin
     class VagrantTasks < ::Rake::TaskLib
       def initialize
         yield self if block_given?
-        @env ||= Vagrant::Environment.new
+        @env ||= ::Vagrant::Environment.new
         define
       end
 
