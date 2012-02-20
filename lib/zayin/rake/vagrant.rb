@@ -76,7 +76,7 @@ module Zayin
               url    = args[:git_url]
               cb_dir = args[:cookbook_dir]
               branch = args[:branch]
-              raise 'You must specify a URL to clone.' unless url.nil?
+              raise 'You must specify a URL to clone.' if url.nil?
 
               basedir = File.dirname(cb_dir)
               Dir.mkdir(basedir) if basedir != '.' && !File.directory?(basedir)
