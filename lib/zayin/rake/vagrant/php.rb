@@ -40,20 +40,24 @@ module Zayin
     phpunit_xml The phpunit.xml file relative to base_dir to configure the
                 phpunit run.
     target      The class or PHP file relative to base_dir to run the tests on.
+    filter      The class or method to filter tests by.
     coverage    The directory in the VM to put the HTML coverage reports into.
                 EOS
               task :unit, [:base_dir,
                            :phpunit_xml,
                            :target,
+                           :filter,
                            :coverage] do |t, args|
                 base_dir    = args[:base_dir] || '/vagrant'
                 phpunit_xml = args[:phpunit_xml]
                 target      = args[:target]
+                filter      = args[:filter]
                 coverage    = args[:coverage]
 
                 opts = []
                 opts << " -c #{phpunit_xml}" unless phpunit_xml.nil?
                 opts << " --coverage-html #{coverage}" unless coverage.nil?
+                opts << " --filter #{filter}" unless filter.nil?
                 opts << " #{target}" unless target.nil?
 
                 cmd = "cd #{base_dir} && phpunit#{opts.join(' ')}"
