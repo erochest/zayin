@@ -6,7 +6,7 @@ GEM
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
-    rake (0.9.2.2)
+    rake (12.3.3)
     rcov (0.9.11)
     shoulda (2.11.3)
 
@@ -16,6 +16,6 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.0.0)
   jeweler (~> 1.6.4)
-  rake (~> 0.8)
+  rake (~> 12.3)
   rcov
   shoulda
